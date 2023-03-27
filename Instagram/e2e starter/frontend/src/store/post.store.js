@@ -113,8 +113,8 @@ export const postStore = {
 
         async addLike(context, { postId }) {
             try {
-                const like = await postService.addLike(postId)
-                context.commit({ type: 'addPostLike', postId, like })
+                const post = await postService.addLike(postId)
+                context.commit(getActionUpdatePost(post))
             } catch (err) {
                 console.log('postStore: Error in addLike', err)
                 throw err

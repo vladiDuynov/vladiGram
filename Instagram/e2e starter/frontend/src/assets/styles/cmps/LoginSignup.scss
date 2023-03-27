@@ -26,6 +26,35 @@
     gap: 20px;
     height: auto;
     width: auto;
+}
+
+.login-input{
+
+    background-color: #eee;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    height: 40px;
+    
+}
+
+.login-or{
+    border-bottom: 1px solid #dbdbdb;
+    line-height: .1em;
+    margin: 20px 0 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.login-or-span{
+    background: #fff;
+    color: #727272;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0 10px;
+}
+
+.login-header{
+    margin-bottom: 15px;
 
 
 }

@@ -66,22 +66,27 @@ async function addPostComment(postId, txt) {
 }
 
 async function addLike(postId) {
-
-    const post = await getById(postId)
-    if (!post.likedBy) post.likedBy = []
-    const liked = userService.getLoggedinUser()
-    // const postLikes = JSON.parse(JSON.stringify(post.likedBy))
-
-    // const postLikes = post.likedBy.map((user,index) => {
-    //     if(user._id === liked._id)
-    //     console.log(index);
-    //     return user;
-    //   })
-    
-    post.likedBy.push(liked)
-    await storageService.put(STORAGE_KEY, post)
-    return liked
-}
+    const post = await getById(postId);
+  
+    if (!post.likedBy) {
+      post.likedBy = [];
+    }
+  
+    const currentUser = userService.getLoggedinUser();
+    const existingLikeIndex = post.likedBy.findIndex((like) => like._id === currentUser._id);
+  
+    if (existingLikeIndex >= 0) {
+      // Remove the current user's like from the likedBy array
+      post.likedBy.splice(existingLikeIndex, 1);
+    } else {
+      // Add the current user's like to the likedBy array
+      post.likedBy.push(currentUser);
+    }
+  
+    const updatedPost = await storageService.put(STORAGE_KEY, post);
+    return updatedPost;
+  }
+  
 
 function getEmptyPost() {
     return {
@@ -107,104 +112,3 @@ function getEmptyPost() {
 }
 
 
-// // // TEST DATA
-// ; (async () => {
-//     await storageService.post(STORAGE_KEY, {
-//         "_id": "p101",
-//         "txt": "Point of view",
-//         "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1651604330/instush/wjj9a7ucw8xauyvikxiq.jpg",
-//         "createdAt": 1651604385128,
-//         "by": {
-//             "_id": "u101",
-//             "username": "Muko",
-//             "imgUrl": "https://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
-//             "fullname": "Muki Muka"
-//         },
-//         "loc": {
-//             "lat": 11.11,
-//             "lng": 22.22,
-//             "name": "Tel Aviv"
-//         },
-//         "comments": [
-//             {
-//                 "id": "c1001",
-//                 "by": {
-//                     "_id": "u102",
-//                     "username": "Ulash",
-//                     "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1648414285/funday%20must/photo-1618085222100-93f0eecad0aa_fuisxo.jpg",
-//                     "fullname": "Ulash Ulashi"
-//                 },
-//                 "txt": "good one!",
-//                 "likedBy": [
-//                     {
-//                         "_id": "u101",
-//                         "username": "Muko",
-//                         "imgUrl": "https://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
-//                         "fullname": "Muki Muka"
-//                     }
-//                 ]
-//             }
-//         ],
-//         "likedBy": [
-//             {
-//                 "_id": "u102",
-//                 "username": "Ulash",
-//                 "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1648414285/funday%20must/photo-1618085222100-93f0eecad0aa_fuisxo.jpg",
-//                 "fullname": "Ulash Ulashi"
-//             }
-//         ],
-//         "tags": [
-//             "fun",
-//             "kids"
-//         ]
-//     })
-//     await storageService.post(STORAGE_KEY, {
-//         "_id": "p101",
-//         "txt": "Point of view",
-//         "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1651604330/instush/wjj9a7ucw8xauyvikxiq.jpg",
-//         "createdAt": 1651604385128,
-//         "by": {
-//             "_id": "u101",
-//             "username": "Muko",
-//             "imgUrl": "https://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
-//             "fullname": "Muki Muka"
-//         },
-//         "loc": {
-//             "lat": 11.11,
-//             "lng": 22.22,
-//             "name": "Tel Aviv"
-//         },
-//         "comments": [
-//             {
-//                 "id": "c1001",
-//                 "by": {
-//                     "_id": "u102",
-//                     "username": "Ulash",
-//                     "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1648414285/funday%20must/photo-1618085222100-93f0eecad0aa_fuisxo.jpg",
-//                     "fullname": "Ulash Ulashi"
-//                 },
-//                 "txt": "good one!",
-//                 "likedBy": [
-//                     {
-//                         "_id": "u101",
-//                         "username": "Muko",
-//                         "imgUrl": "https://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
-//                         "fullname": "Muki Muka"
-//                     }
-//                 ]
-//             }
-//         ],
-//         "likedBy": [
-//             {
-//                 "_id": "u102",
-//                 "username": "Ulash",
-//                 "imgUrl": "https://res.cloudinary.com/mistertoysss/image/upload/v1648414285/funday%20must/photo-1618085222100-93f0eecad0aa_fuisxo.jpg",
-//                 "fullname": "Ulash Ulashi"
-//             }
-//         ],
-//         "tags": [
-//             "fun",
-//             "kids"
-//         ]
-//     })
-// })()

@@ -2,7 +2,7 @@
   <div class="post-preview">
     <header class="preview-header">
       <RouterLink :to="`/${this.post.by.username}`">
-        <img class="post-preview-img-user" :src="post.by.imgUrl" alt=""/>
+        <img class="post-preview-img-user" :src="post.by.imgUrl" alt="" />
       </RouterLink>
       <h4 class="post-preview-username">{{ post?.by?.fullname }}</h4>
     </header>
@@ -11,14 +11,15 @@
     </div>
     <div class="comments-list">
       <div class="actions-container">
-        <button @click="likePost" class="post-preview-buttons"><i v-html="$getSvg('like')"></i></button>
-        <button @click="addComment" class="post-preview-buttons"><i v-html="$getSvg('comment')"></i></button>
+        <button class="post-preview-buttons" v-if="isPostLiked" @click="likePost"><i v-html="$getSvg('comment')"></i></button>
+        <button class="post-preview-buttons" v-else @click="likePost"><i v-html="$getSvg('like')"></i></button>
+        <button class="post-preview-buttons" @click="addComment" ><i v-html="$getSvg('comment')"></i></button>
         <button class="post-preview-buttons"><i v-html="$getSvg('share')"></i></button>
       </div>
 
-      <div class="post-preview-likes">
-        <label for="liked-by" >Liked by </label>
-        <h4  v-for="(lastlike1, i) in lastLiked" :lastlike1="lastlike1" :key="i"> &nbsp; {{ this.lastLike }} &nbsp; </h4>
+      <div class="post-preview-likes" v-if="post.likedBy && post.likedBy.length > 0">
+        <label for="liked-by">Liked by </label>
+        <h4>{{ lastLiked[0].fullname }}</h4>
         <span v-if="moreThanZeroLikes()"> and {{ post.likedBy.length - lastLiked.length }} others</span>
       </div>
       <section v-for="comment in lastThreeComments" :comment="comment" :key="comment.id" style="display: flex;">
@@ -43,24 +44,24 @@ export default {
       comment: '',
       lastLike: '',
       liked: true,
-      
+
     }
   },
 
   created() {
-    const like1 = JSON.parse(JSON.stringify(this.post.likedBy.slice(-1)))
-    try {
-      this.lastLike = like1[0].fullname
-    } catch (error) {
-      this.lastLike = ' No one liked this post yet!'
+    const likedBy = this.post.likedBy
+    if (likedBy.length > 0) {
+      this.lastLike = likedBy[likedBy.length - 1].fullname
+    } else {
+      this.lastLike = 'No one liked this post yet!'
     }
   },
 
   methods: {
     showWatchedUser() {
       console.log(this.post.by.username);
-      
-      
+
+
     },
 
     moreThanZeroLikes() {
@@ -112,12 +113,21 @@ export default {
     lastLiked() {
       return this.post.likedBy.slice(-1)
     },
-    isliked(){
-      if(this.post.likedBy.length>0){
+    isliked() {
+      if (this.post.likedBy.length > 0) {
         this.liked = true
       }
       else this.liked = false
     },
+
+    isPostLiked() {
+      const currentUser = userService.getLoggedinUser();
+      if (this.post && this.post.likedBy) {
+        return this.post.likedBy.some((like) => like._id === currentUser._id);
+      } else {
+        return false;
+      }
+    }
   },
 }
 </script>

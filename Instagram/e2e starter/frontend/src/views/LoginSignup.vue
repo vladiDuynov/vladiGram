@@ -1,6 +1,5 @@
 <template>
   <div class="container about">
-    <p>{{ msg }}</p>
 
     <div v-if="loggedinUser">
       <h3>
@@ -10,32 +9,43 @@
       </h3>
     </div>
 
-    
-    <div class="login-container" v-else>
-      <!-- <h2>Login</h2> -->
-      <form class="login-form" @submit.prevent="doLogin">
-        <!-- <select v-model="loginCred.username">
-          <option value="">Select User</option>
-          <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
-        </select> -->
+    <div v-else>
+      <div v-if="!this.toggleSignup" class="login-container">
+        <h2 class="login-header">Login</h2>
 
+        <form class="login-form" @submit.prevent="doLogin">
+          <select class="login-input" v-model="loginCred.username">
+            <option value="">Select User</option>
+            <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
+          </select>
+          <input class="login-input" type="text" v-model="loginCred.username" placeholder="User name" />
+          <input class="login-input" type="text" v-model="loginCred.password" placeholder="Password" />
+          <button class="login-container-button">Login</button>
+        </form>
+        <span class="login-or">
+          <span class="login-or-span">OR</span>
+        </span>
+        <button @click="toggleSignUpForm" class="login-container-button">SignUp</button>
+      </div>
 
-        <input type="text" v-model="loginCred.username" placeholder="User name" />
-        <input type="text" v-model="loginCred.password" placeholder="Password"/>
+      <div v-if="this.toggleSignup" class="login-container">
+        <h2 class="login-header">Sign Up</h2>
+        <form class="login-form" @submit.prevent="doSignup">
+          <input class="login-input" type="text" v-model="signupCred.fullname" placeholder="Your full name" />
+          <input class="login-input" type="text" v-model="signupCred.username" placeholder="Username" />
+          <input class="login-input" type="password" v-model="signupCred.password" placeholder="Password" />
+          <ImgUploader  @uploaded="onUploaded" />
+          <button class="login-container-button">SignUp</button>
+        </form>
+        <span class="login-or">
+          <span class="login-or-span">OR</span>
+        </span>
+        <button @click="toggleSignUpForm" class="login-container-button">Login</button>
+      </div>
 
-        <button class="login-container-button">Login</button>
-      
-      </form>
-      <form @submit.prevent="doSignup">
-        <h2>Signup</h2>
-        <input type="text" v-model="signupCred.fullname" placeholder="Your full name" />
-        <input type="text" v-model="signupCred.username" placeholder="Username" />
-        <input type="password" v-model="signupCred.password" placeholder="Password" />
-        <ImgUploader @uploaded="onUploaded" />
-        <button>Signup</button>
-      </form>
     </div>
-    <hr />
+
+
   </div>
 </template>
 
@@ -48,8 +58,9 @@ export default {
   data() {
     return {
       msg: '',
-      loginCred: { username: 'user1', password: '123' },
-      signupCred: { username: '', password: '', fullname: '', imgUrl : '' },
+      loginCred: { username: '', password: '' },
+      signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
+      toggleSignup: false,
     }
   },
   computed: {
@@ -64,6 +75,10 @@ export default {
     this.loadUsers()
   },
   methods: {
+
+    toggleSignUpForm() {
+      this.toggleSignup = !this.toggleSignup
+    },
     async doLogin() {
       if (!this.loginCred.username) {
         this.msg = 'Please enter username/password'

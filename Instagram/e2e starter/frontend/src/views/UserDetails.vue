@@ -1,8 +1,8 @@
 <template>
   <div v-if="this.loading">
-    <h1>
+    <h5>
       Loading Data
-    </h1>
+    </h5>
   </div>
 
   <div v-else>
@@ -13,8 +13,17 @@
         </div>
         <div>
           <h4>{{ user.fullname }}</h4>
-          <ImgUploader v-if="this.isMe" @uploaded="onUploaded" />
+          <form v-if="this.isMe" class="login-form" @submit.prevent="updateProfilePic()">
+            <ImgUploader  @uploaded="onUploaded" />
+            <!-- <button class="login-container-button"></button> -->
+          </form>
         </div>
+      </div>
+
+      <div class="user-details">
+        <h5>{{this.user.fullname}}</h5>
+        <p>{{this.user.txt}}</p>
+
       </div>
 
       <div id="user-dash-board" class="user-dash-board">

@@ -1,14 +1,15 @@
 <!-- Sidebar component -->
 <template>
-  <div>
-    <p>Here you can create a new Post!</p>
+  <div class="login-container">
+    <h2>New Post</h2>
+    <p style="font-size: 14px;">Here you can create a new Post!</p>
     
-    <form @submit.prevent="createNewPost()">
-        <h2>New Post</h2>
-        <input type="text" v-model="post.txt" placeholder="Post text" />
+    <form class="login-form" @submit.prevent="createNewPost()">
+        
+        <input class="login-input" type="text" v-model="post.txt" placeholder="Post text" />
         <ImgUploader @uploaded="onUploaded" />
-        <button>Post</button>
-      </form>
+        <button class="login-container-button">Post</button>
+    </form>
 
   </div>
 </template>
