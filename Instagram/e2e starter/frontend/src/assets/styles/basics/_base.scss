@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    line-height: 1.6;
+    color: $clr2;
+}
+
+body {
+    margin: 0;
+    height: 100dvh;
+}
+#app {
+    height: 100%;
+}
+
+.app-nav{
+    display: flex;
+    padding: 1vh;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1px solid #dbdbdb;
+    border-top: 0.1px solid #dbdbdb;
+}
+
+.nav-bar-img-user{
+
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px; 
+    height: 30px;
+
+
+}
+
+.app-main {
+    margin-right: -15px;
+    height: 80vh;
+    overflow-y: auto;
+    background: white;
+}
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(191, 20, 20, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(237, 19, 19, 0);
+    outline: 1px solid rgba(112, 128, 144, 0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+// img {
+//     width: 100%;
+// }
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+button:hover {
+    cursor: pointer;
+}
+

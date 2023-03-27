@@ -1,0 +1,56 @@
+.post-preview {
+    border-bottom: 0.1px solid #dbdbdb;
+}
+
+
+
+
+.preview-header {
+    display: flex;
+    justify-content: flex;
+    align-items: center;
+
+
+
+}
+
+.post-preview-img-user {
+
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px; 
+    height: 30px;
+
+
+}
+
+.post-preview-username {
+    margin-left: 5px;
+    font-size: 12px;
+
+}
+
+.post-preview-img-preview {
+    display: flex;
+    background-color: transparent;
+    text-align: center;
+}
+
+.post-preview-likes {
+    display: flex;
+    font-size: 10px;
+    margin-left: 10px;
+
+}
+
+.comments-list {
+    margin-top: 10px;
+    font-size: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.post-preview-buttons {
+    background-color: transparent;
+    border: none;
+}

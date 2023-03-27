@@ -1,0 +1,9 @@
+UX end comps design
+https://miro.com/app/board/o9J_lzoCIa8=/?share_link_id=972645123557
+
+App-icons with SVG 
+https://codesandbox.io/s/svg-vue-q3kiko?file=/src/App.vue
+
+Images assets
+https://unsplash.com/s/photos/peple
+
