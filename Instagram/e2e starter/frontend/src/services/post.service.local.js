@@ -66,28 +66,22 @@ async function addPostComment(postId, txt) {
 }
 
 async function addLike(postId) {
-    const post = await getById(postId);
-  
+    const post = await getById(postId)
     if (!post.likedBy) {
-      post.likedBy = [];
+      post.likedBy = []
     }
-  
     const currentUser = userService.getLoggedinUser();
-    const existingLikeIndex = post.likedBy.findIndex((like) => like._id === currentUser._id);
+    const existingLikeIndex = post.likedBy.findIndex((like) => like._id === currentUser._id)
   
     if (existingLikeIndex >= 0) {
-      // Remove the current user's like from the likedBy array
-      post.likedBy.splice(existingLikeIndex, 1);
+      post.likedBy.splice(existingLikeIndex, 1)
     } else {
-      // Add the current user's like to the likedBy array
-      post.likedBy.push(currentUser);
+      post.likedBy.push(currentUser)
     }
-  
-    const updatedPost = await storageService.put(STORAGE_KEY, post);
-    return updatedPost;
+    const updatedPost = await storageService.put(STORAGE_KEY, post)
+    return updatedPost
   }
   
-
 function getEmptyPost() {
     return {
         _id: '',

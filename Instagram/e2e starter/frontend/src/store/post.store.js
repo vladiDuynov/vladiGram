@@ -55,11 +55,6 @@ export const postStore = {
             if (!post.comments) post.comments = []
             post.comments.push(comment)
         },
-        addPostLike(state, { postId, like }) {
-            const post = state.posts.find(post => post._id === postId)
-            if (!post.likedBy) post.likedBy = []
-            post.likedBy.push(like)
-        },
     },
     actions: {
         async addPost(context, { post }) {

@@ -1,6 +1,5 @@
 <template>
   <div class="container about">
-
     <div v-if="loggedinUser">
       <h3>
         Loggedin User:
@@ -8,11 +7,9 @@
         <button @click="doLogout">Logout</button>
       </h3>
     </div>
-
     <div v-else>
       <div v-if="!this.toggleSignup" class="login-container">
         <h2 class="login-header">Login</h2>
-
         <form class="login-form" @submit.prevent="doLogin">
           <select class="login-input" v-model="loginCred.username">
             <option value="">Select User</option>
@@ -27,7 +24,6 @@
         </span>
         <button @click="toggleSignUpForm" class="login-container-button">SignUp</button>
       </div>
-
       <div v-if="this.toggleSignup" class="login-container">
         <h2 class="login-header">Sign Up</h2>
         <form class="login-form" @submit.prevent="doSignup">
@@ -42,17 +38,12 @@
         </span>
         <button @click="toggleSignUpForm" class="login-container-button">Login</button>
       </div>
-
     </div>
-
-
   </div>
 </template>
 
 <script>
-
 import ImgUploader from '../cmps/ImgUploader.vue'
-
 export default {
   name: 'login-signup',
   data() {
@@ -75,7 +66,6 @@ export default {
     this.loadUsers()
   },
   methods: {
-
     toggleSignUpForm() {
       this.toggleSignup = !this.toggleSignup
     },
@@ -102,7 +92,6 @@ export default {
       }
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
       this.$router.push('/')
-
     },
     loadUsers() {
       this.$store.dispatch({ type: "loadUsers" })
@@ -118,7 +107,6 @@ export default {
     onUploaded(imgUrl) {
       this.signupCred.imgUrl = imgUrl
     }
-
   },
   components: {
     ImgUploader
