@@ -55,3 +55,15 @@
     background-color: transparent;
     border: none;
 }
+
+.dot-seperator-container{
+    text-align: center;
+
+}
+.dot-seperator {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+  }

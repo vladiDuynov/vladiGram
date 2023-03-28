@@ -4,7 +4,12 @@
       <RouterLink :to="`/${this.post.by.username}`">
         <img class="post-preview-img-user" :src="post.by.imgUrl" alt="" />
       </RouterLink>
-      <h4 class="post-preview-username">{{ post?.by?.fullname }}</h4>
+      <h4 class="post-preview-username">{{ post?.by?.username}}</h4>
+      <div class="dot-seperator-container">
+        <span class="dot-seperator"></span>
+        {{getTimeElapsed(post.createdAt)}}
+      </div>   
+      
     </header>
     <div class="post-preview-img-preview">
       <img :src="post.imgUrl" alt="" style=" width: 100%;" />
@@ -58,6 +63,28 @@ export default {
   },
 
   methods: {
+
+    getTimeElapsed(createdAt) {
+      const postCreatedAt = new Date(createdAt).getTime() // convert to milliseconds
+      const currentTime = Date.now() // current time in milliseconds
+  
+      const timeDiff = currentTime - postCreatedAt // calculate time difference
+  
+      // calculate elapsed time in minutes, hours, or days
+      const elapsedMinutes = Math.round(timeDiff / (1000 * 60))
+      const elapsedHours = Math.round(timeDiff / (1000 * 60 * 60))
+      const elapsedDays = Math.round(timeDiff / (1000 * 60 * 60 * 24))
+  
+      // display elapsed time in the appropriate format
+      if (elapsedMinutes < 60) {
+        return `${elapsedMinutes} minutes ago`
+      } else if (elapsedHours < 24) {
+        return `${elapsedHours} hours ago`
+      } else {
+        return `${elapsedDays} days ago`
+      }
+    },
+
     showWatchedUser() {
       console.log(this.post.by.username);
 
