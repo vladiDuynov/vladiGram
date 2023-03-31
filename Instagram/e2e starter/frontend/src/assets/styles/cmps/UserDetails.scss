@@ -1,4 +1,14 @@
+.user-header {
+    display: flex;
+    height: 10vh;
+    background-color: white;
+    justify-content: space-between;
 
+    align-items: center;
+    border-bottom: 0.1px solid #dbdbdb;
+ 
+    padding-top: 10px;
+}
 
 /* Center the user details */
 .user-info {
@@ -43,8 +53,8 @@
 .user-post-list{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3 - 10px), 1fr));
-    gap: 10px;
-    padding: 10px;
+    gap: 2px;
+    
 
 }
 
@@ -53,5 +63,29 @@
     height: -webkit-fill-available;
   }
 
-  
+
+ .dashboard-element h6 {
+
+    margin-top: 3px;
+
+ }
+
+ .dashboard-element span {
+    font-size: 10px;
+    color: grey;
+
+ }
+
+ .user-post-filer{
+    display: flex;
+    height: 8vh;
+    background-color: white;
+    justify-content: space-between;
+
+    align-items: center;
+    
+ 
+    padding: 25px;
+
+ }
   

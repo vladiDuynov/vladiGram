@@ -1,27 +1,19 @@
 <template>
-  <div class="post-preview">
-    <header class="preview-header">
-      <RouterLink :to="`/${this.post.by.username}`">
-        <img class="post-preview-img-user" :src="post.by.imgUrl" alt="" />
-      </RouterLink>
-      <h4 class="post-preview-username">{{ post?.by?.username }}</h4>
-      <div class="post-time">
-        <span>•</span>
-        <span>{{ getTimeElapsed(post.createdAt) }}</span>
+  <div class="post-details">
+    <header class="app-header">
+      <div style="display: flex;">
+        <RouterLink :to="`/${this.post.by.username}`">
+          <img class="post-preview-img-user" :src="post.by.imgUrl" alt="" />
+        </RouterLink>
+        <h4 class="post-preview-username">{{ post?.by?.username }}</h4>
       </div>
-
+      <span><i v-html="$getSvg('more')" style="flex-grow: 1; max-width: 100%;"></i></span>
     </header>
 
     <div class="post-preview-img-preview">
       <img @click="showModal = true" :src="post.imgUrl" alt="" style=" width: 100%;" />
-
-      <div v-if="showModal" class="modal">
-        <PostDetails :post="post" />
-        <span @click="showModal = false" style="padding: 4%;"><i v-html="$getSvg('close')"
-            style="flex-grow: 1; max-width: 100%;"></i></span>
-      </div>
-
     </div>
+    
     <div class="comments-list">
       <div class="actions-container">
         <div>
@@ -32,8 +24,6 @@
         </div>
 
         <button class="post-preview-buttons"><i v-html="$getSvg('save')"></i></button>
-
-
       </div>
 
       <div class="post-preview-likes" v-if="post.likedBy && post.likedBy.length > 0">
@@ -41,9 +31,9 @@
         <h4>{{ lastLiked[0].fullname }}</h4>
         <span v-if="moreThanZeroLikes()"> and {{ post.likedBy.length - lastLiked.length }} others</span>
       </div>
-      <section v-for="comment in lastThreeComments" :comment="comment" :key="comment.id" style="display: flex;">
+      <!-- <section v-for="comment in lastThreeComments" :comment="comment" :key="comment.id" style="display: flex;">
         <h4>{{ comment.by.fullname }}</h4> &nbsp; {{ comment.txt }}
-      </section>
+      </section> -->
       <div>
         <input type="text" v-model="comment" placeholder="Add a comment!" />
       </div>
@@ -52,7 +42,7 @@
 </template>
 
 <script>
-import PostDetails from './PostDetails.vue'
+import NewPost from '../cmps/NewPost.vue'
 
 export default {
   name: 'post-preview',
@@ -173,7 +163,7 @@ export default {
     }
   },
   components: {
-    PostDetails
+    NewPost
   },
 }
 </script>

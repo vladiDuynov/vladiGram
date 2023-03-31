@@ -8,12 +8,8 @@ import UserDetails from './views/UserDetails.vue'
 const routes = [
   {
     path: '/',
-    component: AppIndex
+    component:AppIndex
   },
-
-
-
-
   // {
   //   path: '/chat',
   //   name: 'Chat',

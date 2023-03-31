@@ -1,4 +1,5 @@
 <template>
+  <AppHeader/>
   <div class="container about">
     <div v-if="loggedinUser">
       <h3>
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+import AppHeader from '../cmps/AppHeader.vue'
 import ImgUploader from '../cmps/ImgUploader.vue'
 export default {
   name: 'login-signup',
@@ -109,7 +111,8 @@ export default {
     }
   },
   components: {
-    ImgUploader
+    ImgUploader,
+    AppHeader
   }
 }
 </script>

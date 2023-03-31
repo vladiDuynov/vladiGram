@@ -7,6 +7,12 @@
 
   <div v-else>
     <div v-if="this.user">
+      <div class="user-header">
+        <span><i v-html="$getSvg('settings')" style="flex-grow: 1; max-width: 100%;"></i></span>
+        {{ user.fullname }}
+        <span><i v-html="$getSvg('addUser')" style="flex-grow: 1; max-width: 100%;"></i></span>
+      </div>
+
       <div class="user-info">
         <div>
           <img class="user-info-img" :src="user.imgUrl" alt="User Image" />
@@ -27,19 +33,29 @@
       </div>
 
       <div id="user-dash-board" class="user-dash-board">
-        <div>
+        <div class="dashboard-element">
           <h6>{{ posts?.length || 0 }}</h6>
-          <label>posts</label>
+          <span>posts</span>
         </div>
-        <div>
+        <div class="dashboard-element">
           <h6>876</h6>
-          <label>followers</label>
+          <span>followers</span>
         </div>
-        <div>
+        <div class="dashboard-element">
           <h6>1123</h6>
-          <label>following</label>
+          <span>following</span>
         </div>
       </div>
+
+      <div class="user-post-filer">
+        <span><i v-html="$getSvg('posts-tab')" style="flex-grow: 1; max-width: 100%;"></i></span>
+        <span><i v-html="$getSvg('reels')" style="flex-grow: 1; max-width: 100%;"></i></span>
+        <span><i v-html="$getSvg('saved-tab')" style="flex-grow: 1; max-width: 100%;"></i></span>
+        <span><i v-html="$getSvg('tagged-tab')" style="flex-grow: 1; max-width: 100%;"></i></span>
+
+      </div>
+
+
 
       <div class="user-post-list">
         <img class="user-grid-item" v-for="post in posts" :post="post" :key="post._id" :src="post.imgUrl"

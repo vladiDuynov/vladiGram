@@ -1,5 +1,6 @@
 <template>
   <section v-if="this.loggedinUser">
+    <AppHeader/>
     <PostPreview v-for="post in posts" :post="post" :key="post._id"></PostPreview>
   </section>
   
@@ -11,7 +12,7 @@
 <script>
 
 import PostPreview from './PostPreview.vue'
-
+import AppHeader from '../cmps/AppHeader.vue'
 export default {
   name: 'home',
   created() {
@@ -23,6 +24,7 @@ export default {
   },
   components: {
     PostPreview,
+    AppHeader
   },
   computed: {
     posts() {
@@ -35,7 +37,6 @@ export default {
   },
   mounted() {
     if (!this.loggedinUser) {
-      // Redirect to the login page after 3 seconds
       setTimeout(() => {
         this.$router.push('/login')
       }, 2000)

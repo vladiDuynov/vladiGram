@@ -1,8 +1,6 @@
 <template>
-  <AppHeader />
   <main class="app-main">
     <RouterView />
-
   </main>
   <AppNav />
 </template>

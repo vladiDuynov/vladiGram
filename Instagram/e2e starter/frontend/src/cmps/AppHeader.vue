@@ -2,7 +2,8 @@
   <header class="app-header">
 
     <RouterLink to="/"><i class="app-header-logo" v-html="$getSvg('logo')"></i></RouterLink>
-    <RouterLink to="/newpost" v-if="loggedinUser"><i class="app-header-post-button" v-html="$getSvg('newPost')"></i></RouterLink>
+    <RouterLink to="/"><i v-html="$getSvg('like')" style="flex-grow: 1; max-width: 100%;"></i></RouterLink> 
+
 
   </header>
 </template>

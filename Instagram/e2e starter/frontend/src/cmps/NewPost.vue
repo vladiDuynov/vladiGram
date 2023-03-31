@@ -1,14 +1,21 @@
 <!-- Sidebar component -->
 <template>
-  <div class="login-container">
-    <h2>New Post</h2>
-    <p style="font-size: 14px;">Here you can create a new Post!</p>
+  <div class="new-post-container">
+    <div class="new-post-header">
+      <span>Create new Post</span>
+      <button v-if="this.post.imgUrl"  @click="createNewPost" class="login-container-button">Share</button>
+    </div>
+    
+    <span v-if="this.post.imgUrl"><img :src="this.post.imgUrl" alt="" style=" width: 100%;" /></span>
+    <div v-else>
+      <span><i v-html="$getSvg('addMedia')" style="flex-grow: 1; max-width: 100%;"></i></span>
+      <p>Drag photos and videos here</p>
+    </div>
+    
     
     <form class="login-form" @submit.prevent="createNewPost()">
-        
-        <input class="login-input" type="text" v-model="post.txt" placeholder="Post text" />
-        <ImgUploader @uploaded="onUploaded" />
-        <button class="login-container-button">Post</button>
+        <ImgUploader v-if="!this.post.imgUrl" @uploaded="onUploaded" />
+        <!-- <button class="login-container-button">Post</button> -->
     </form>
 
   </div>
