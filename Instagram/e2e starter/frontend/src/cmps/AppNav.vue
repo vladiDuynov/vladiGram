@@ -5,7 +5,6 @@
 
     <span><i v-html="$getSvg('reels')" style="flex-grow: 1; max-width: 100%;"></i></span>
     <RouterLink to="/login/"><i v-html="$getSvg('inbox')" style="flex-grow: 1; max-width: 100%;"></i></RouterLink>
-    <!-- <RouterLink to="/newpost" v-if="loggedinUser"><i class="app-header-post-button" v-html="$getSvg('newPost')"></i> -->
     <span v-if="loggedinUser" @click="showNewPostModal = true"><i v-html="$getSvg('newPost')"></i>
     </span>
 

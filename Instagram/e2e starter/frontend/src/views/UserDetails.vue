@@ -20,15 +20,15 @@
         <div>
           <h4>{{ user.fullname }}</h4>
           <form v-if="this.isMe" class="login-form" @submit.prevent="updateProfilePic()">
-            <ImgUploader  @uploaded="onUploaded" />
+            <ImgUploader @uploaded="onUploaded" />
             <!-- <button class="login-container-button"></button> -->
           </form>
         </div>
       </div>
 
       <div class="user-details">
-        <h5>{{this.user.fullname}}</h5>
-        <p>{{this.user.txt}}</p>
+        <h5>{{ this.user.fullname }}</h5>
+        <p>{{ this.user.txt }}</p>
 
       </div>
 
@@ -58,8 +58,14 @@
 
 
       <div class="user-post-list">
-        <img class="user-grid-item" v-for="post in posts" :post="post" :key="post._id" :src="post.imgUrl"
+        <img class="user-grid-item"  @click="showPostDetails(post)" v-for="post in posts" :post="post" :key="post._id" :src="post.imgUrl"
           alt="User Image" />
+
+        <div v-if="showModal" class="modal">
+          <PostDetails :post="selectedPost" />  
+          <span @click="showModal = false" style="padding: 4%;"><i v-html="$getSvg('close')"
+              style="flex-grow: 1; max-width: 100%;"></i></span>
+        </div>
       </div>
 
     </div>
@@ -74,12 +80,15 @@
 <script>
 import ImgUploader from '../cmps/ImgUploader.vue'
 import PostPreview from './PostPreview.vue'
+import PostDetails from './PostDetails.vue'
 
 export default {
 
   data() {
     return {
-      loading: true
+      loading: true,
+      showModal: false,
+      selectedPost: null
     }
   },
 
@@ -119,6 +128,12 @@ export default {
 
   },
   methods: {
+
+    showPostDetails(post) {
+      this.selectedPost = post
+      this.showModal = true
+    },
+
     test() {
       console.log(this.isMe);
     },
@@ -138,6 +153,7 @@ export default {
   components: {
     ImgUploader,
     PostPreview,
+    PostDetails,
   }
 }
 </script>
