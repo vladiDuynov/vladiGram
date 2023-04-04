@@ -1,7 +1,8 @@
 <template>
   <section v-if="this.loggedinUser">
-    <AppHeader/>
+    
     <PostPreview v-for="post in posts" :post="post" :key="post._id"></PostPreview>
+
   </section>
   
   <section v-else>
@@ -13,6 +14,7 @@
 
 import PostPreview from './PostPreview.vue'
 import AppHeader from '../cmps/AppHeader.vue'
+import AppNav from '../cmps/AppNav.vue'
 export default {
   name: 'home',
   created() {
@@ -24,7 +26,8 @@ export default {
   },
   components: {
     PostPreview,
-    AppHeader
+    AppHeader,
+    AppNav
   },
   computed: {
     posts() {

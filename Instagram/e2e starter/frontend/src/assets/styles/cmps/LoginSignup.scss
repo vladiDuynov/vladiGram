@@ -6,7 +6,14 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 20px;
+    text-align: center;
     
+}
+
+.login-logo{
+    padding: 20px;
+
+
 }
 
 .login-container-button{
@@ -32,7 +39,7 @@
 
     background-color: #eee;
     border: 1px solid #bebebe;
-    border-radius: 5px;
+    border-radius: 2px;
     height: 40px;
     
 }
@@ -56,5 +63,33 @@
 .login-header{
     margin-bottom: 15px;
 
+
+}
+
+.forgot-password{
+    text-align: right;
+    color: #0095f6;
+    font-size: 14px;
+}
+
+.login-footer{
+    margin-top: 15px;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    padding: 15px;
+}
+
+.login-footer-button{
+
+    color: #0095f6;
+
+}
+
+.img-profile-preview{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    align-self: center;
 
 }

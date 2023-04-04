@@ -13,7 +13,7 @@
     </RouterLink>
 
     <div v-if="showNewPostModal" class="modal">
-      <NewPost />
+      <NewPost @close="showNewPostModal = false" />
       <span @click="showNewPostModal = false" style="padding: 4%;"><i v-html="$getSvg('close')"
           style="flex-grow: 1; max-width: 100%;"></i></span>
     </div>

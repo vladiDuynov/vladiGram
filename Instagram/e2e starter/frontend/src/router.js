@@ -18,7 +18,8 @@ const routes = [
   {
     path: '/login',
     name: 'LoginSignup',
-    component: LoginSignup
+    component: LoginSignup,
+    meta: { requiresLogin: true ,requiresNav:true}
   },
   {
     path: '/newpost',
@@ -29,7 +30,8 @@ const routes = [
   {
     path: '/:id',
     name: 'UserDetails',
-    component: UserDetails
+    component: UserDetails,
+    meta: { requiresLogin: true}
   },
   // {
   //   path: '/user/:id',

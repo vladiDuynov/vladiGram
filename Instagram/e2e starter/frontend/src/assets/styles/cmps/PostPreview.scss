@@ -40,6 +40,8 @@
     display: flex;
     background-color: transparent;
     text-align: center;
+    max-width: fit-content;
+    max-height: 400px;
 }
 
 .post-preview-likes {
@@ -62,6 +64,12 @@
     border: none;
 }
 
+
+.post-preview-img{
+
+    max-inline-size: -webkit-fill-available;
+
+}
 
 
 

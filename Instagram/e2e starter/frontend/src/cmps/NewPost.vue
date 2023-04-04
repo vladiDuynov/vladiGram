@@ -6,7 +6,7 @@
       <button v-if="this.post.imgUrl"  @click="createNewPost" class="login-container-button">Share</button>
     </div>
     
-    <span v-if="this.post.imgUrl"><img :src="this.post.imgUrl" alt="" style=" width: 100%;" /></span>
+    <span v-if="this.post.imgUrl"><img class="new-post-img-preview" :src="this.post.imgUrl" alt="" /></span>
     <div v-else>
       <span><i v-html="$getSvg('addMedia')" style="flex-grow: 1; max-width: 100%;"></i></span>
       <p>Drag photos and videos here</p>
@@ -57,6 +57,7 @@ export default {
         
         try {
           await this.$store.dispatch({ type: "addPost", post: this.post}) 
+          this.$emit('close')
           this.$router.push('/')
         } catch (err) {
           console.log(err)

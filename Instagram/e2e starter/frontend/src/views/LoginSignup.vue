@@ -1,5 +1,4 @@
 <template>
-  <AppHeader/>
   <div class="container about">
     <div v-if="loggedinUser">
       <h3>
@@ -10,34 +9,57 @@
     </div>
     <div v-else>
       <div v-if="!this.toggleSignup" class="login-container">
-        <h2 class="login-header">Login</h2>
-        <form class="login-form" @submit.prevent="doLogin">
-          <select class="login-input" v-model="loginCred.username">
-            <option value="">Select User</option>
-            <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
-          </select>
-          <input class="login-input" type="text" v-model="loginCred.username" placeholder="User name" />
-          <input class="login-input" type="text" v-model="loginCred.password" placeholder="Password" />
-          <button class="login-container-button">Login</button>
-        </form>
+        <div class="login-logo">
+          <RouterLink to="/"><i class="app-header-logo" v-html="$getSvg('logo')"></i></RouterLink>
+        </div>
+        <button class="login-container-button">Continue with Facebook</button>
         <span class="login-or">
           <span class="login-or-span">OR</span>
         </span>
-        <button @click="toggleSignUpForm" class="login-container-button">SignUp</button>
+
+        <form class="login-form" @submit.prevent="doLogin">
+          <!-- <select class="login-input" v-model="loginCred.username">
+            <option value="">Select User</option>
+            <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
+          </select> -->
+          <input class="login-input" type="text" v-model="loginCred.username"
+            placeholder="Phone number, username, or email" />
+          <input class="login-input" type="text" v-model="loginCred.password" placeholder="Password" />
+
+          <div class="forgot-password">
+            <span>Forgot password?</span>
+          </div>
+          <button class="login-container-button">Log in</button>
+        </form>
+
+        <div class="login-footer">
+          <span>Don't have an account?</span>&nbsp
+          <span @click="toggleSignUpForm" class="login-footer-button">Sign up</span>
+        </div>
       </div>
+
+
       <div v-if="this.toggleSignup" class="login-container">
-        <h2 class="login-header">Sign Up</h2>
+        <div class="login-logo">
+          <RouterLink to="/"><i class="app-header-logo" v-html="$getSvg('logo')"></i></RouterLink>
+        </div>
+        <button class="login-container-button">Continue with Facebook</button>
+        <span class="login-or">
+          <span class="login-or-span">OR</span>
+        </span>
         <form class="login-form" @submit.prevent="doSignup">
           <input class="login-input" type="text" v-model="signupCred.fullname" placeholder="Your full name" />
           <input class="login-input" type="text" v-model="signupCred.username" placeholder="Username" />
           <input class="login-input" type="password" v-model="signupCred.password" placeholder="Password" />
-          <ImgUploader  @uploaded="onUploaded" />
+          <ImgUploader @uploaded="onUploaded" />
+          <img class="img-profile-preview" v-if="this.signupCred.imgUrl" :src="this.signupCred.imgUrl" />
           <button class="login-container-button">SignUp</button>
         </form>
-        <span class="login-or">
-          <span class="login-or-span">OR</span>
-        </span>
-        <button @click="toggleSignUpForm" class="login-container-button">Login</button>
+        
+        <div class="login-footer">
+          <span>Have an account?</span>&nbsp
+          <span @click="toggleSignUpForm" class="login-footer-button">Log in</span>
+        </div>
       </div>
     </div>
   </div>

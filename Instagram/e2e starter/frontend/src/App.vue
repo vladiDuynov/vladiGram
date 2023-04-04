@@ -1,8 +1,9 @@
 <template>
+  <AppHeader v-if="!$route.meta.requiresLogin"/>
   <main class="app-main">
     <RouterView />
   </main>
-  <AppNav />
+  <AppNav v-if="!$route.meta.requiresNav" />
 </template>
 
 <script>

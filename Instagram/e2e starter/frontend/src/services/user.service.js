@@ -21,9 +21,14 @@ export const userService = {
 window.userService = userService
 
 
-function getUsers() {
-    return storageService.query('user')
+async function getUsers(filterBy = { txt: '', price: 0 }) {
+    var users = await storageService.query('user')
     // return httpService.get(`user`)
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        users = users.filter(user => regex.test(user.username))
+    }
+    return users
 }
 
 function onUserUpdate(user) {

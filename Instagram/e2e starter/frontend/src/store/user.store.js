@@ -64,10 +64,10 @@ export const userStore = {
                 throw err
             }
         },
-        async loadUsers({ commit }) {
+        async loadUsers({ commit },{txt}) {
             // TODO: loading
             try {
-                const users = await userService.getUsers()
+                const users = await userService.getUsers({txt})
                 commit({ type: 'setUsers', users })
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)

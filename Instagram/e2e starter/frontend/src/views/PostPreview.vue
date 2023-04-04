@@ -1,10 +1,12 @@
 <template>
   <div class="post-preview">
+
     <header class="preview-header">
       <RouterLink :to="`/${this.post.by.username}`">
         <img class="post-preview-img-user" :src="post.by.imgUrl" alt="" />
       </RouterLink>
       <h4 class="post-preview-username">{{ post?.by?.username }}</h4>
+      
       <div class="post-time">
         <span>•</span>
         <span>{{ getTimeElapsed(post.createdAt) }}</span>
@@ -13,7 +15,7 @@
     </header>
 
     <div class="post-preview-img-preview">
-      <img @click="showModal = true" :src="post.imgUrl" alt="" style=" width: 100%;" />
+      <img class="post-preview-img" @click="showModal = true" :src="post.imgUrl" alt="" />
 
       <div v-if="showModal" class="modal">
         <PostDetails :post="post" />

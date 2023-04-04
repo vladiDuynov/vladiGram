@@ -6,8 +6,7 @@
 
     align-items: center;
     border-bottom: 0.1px solid #dbdbdb;
- 
-    padding-top: 10px;
+
 }
 
 .app-header-logo{
@@ -20,3 +19,67 @@
 
 }
 
+.header-search{
+    background-color: #eee;
+    border-radius: 8px;
+    width: 200px;
+    padding-left: 10px;
+    display: flex;
+}
+
+.header-search-input{
+    background: transparent;
+    border: none;
+    width: 80%;
+
+}
+
+
+.header-search-input:focus {
+    outline: none; /* Remove the default focus outline */
+  }
+
+.search-modal{
+    
+    position: fixed;
+    top: 55px;
+    left: 200px;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    border-radius: 2%;
+    padding: 8px;
+}
+
+.inner-search-close{
+    padding-left: 10px;
+    font-size: 10px;
+    padding-top: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.search-user-link{
+    text-decoration: none;
+    display: flex;
+    color: inherit;
+    padding: 10px;
+}
+
+.search-user-link:hover{
+    background-color: rgb(243, 235, 235);
+}
+
+.search-preview-img-user {
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px; 
+    height: 50px;
+}
+
+.search-preview-username{
+    margin-left: 12px;
+    font-size: 16px;
+
+}
